@@ -93,4 +93,52 @@ public class Job {
     public void setCoreCompetency(CoreCompetency coreCompetency) {
         this.coreCompetency = coreCompetency;
     }
+
+    @Override
+    public String toString() {
+        String returnString = "\nID: " + this.getId();
+        if(this.getName() == null || this.getName() == "" ){
+            returnString += "\nName: Data not available";
+        } else {
+            returnString += "\nName: " + this.getName();
+        }
+
+        if(this.getEmployer() == null || this.getEmployer().getValue() == ""){
+            returnString += "\nEmployer: Data not available";
+        } else {
+            returnString += "\nEmployer: " + this.getEmployer().getValue();
+        }
+
+        if(this.getLocation() == null || this.getLocation().getValue() == ""){
+            returnString += "\nLocation: Data not available";
+        } else {
+            returnString += "\nLocation: " + this.getLocation().getValue();
+        }
+
+        if(this.getPositionType() == null || this.getPositionType().getValue() == ""){
+            returnString += "\nPosition Type: Data not available";
+        } else {
+            returnString += "\nPosition Type: " + this.getPositionType().getValue();
+        }
+
+        if(this.getCoreCompetency() == null || this.getCoreCompetency().getValue() == ""){
+            returnString += "\nCore Competency: Data not available";
+        } else {
+            returnString += "\nCore Competency: " + this.getCoreCompetency().getValue();
+        }
+
+//        if(this.getName() == null && this.getEmployer() == null && this.getLocation() == null && this.getPositionType() == null && this.getCoreCompetency() == null){
+//            return "OOPS! This job does not seem to exist.";
+//        }
+
+
+        return  returnString+ "\n";
+//        return "\nID: " + this.getId() +
+//                "\nName: " + this.getName() +
+//                "\nEmployer: " + this.getEmployer().getValue() +
+//                "\nLocation: " + this.getLocation().getValue() +
+//                "\nPosition Type: " + this.getPositionType().getValue() +
+//                "\nCore Competency: " + this.getCoreCompetency().getValue() +
+//                "\n";
+    }
 }
