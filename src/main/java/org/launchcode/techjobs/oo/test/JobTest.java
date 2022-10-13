@@ -54,17 +54,29 @@ public class JobTest {
     public void testToStringContainsCorrectLabelsAndData(){
         Job toStringJob = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
         assertEquals("ID:", toStringJob.toString().substring(1, 4));
-        assertTrue(toStringJob.toString().contains("ID:"));
+        String str = toStringJob.toString();
+        int idPos = str.indexOf("ID:");
+        int namePos = str.indexOf("Name:");
+        int employerPos = str.indexOf("Employer:");
+        int locationPos = str.indexOf("Location:");
+        int posTypePos = str.indexOf("Position Type:");
+        int corePos = str.indexOf("Core Competency:");
+        assertEquals("ID:", str.substring(idPos, idPos + 3));
+        assertEquals("Name:", str.substring(namePos, namePos + 5));
+        assertEquals("Employer:", str.substring(employerPos, employerPos + 9));
+        assertEquals("Location:", str.substring(locationPos, locationPos + 9));
+        assertEquals("Position Type:", str.substring(posTypePos, posTypePos + 14));
+        assertEquals("Core Competency:", str.substring(corePos, corePos + 16));
         assertTrue(toStringJob.toString().contains(valueOf(toStringJob.getId())));
-        assertTrue(toStringJob.toString().contains("Name:"));
+        //assertTrue(toStringJob.toString().contains("Name:"));
         assertTrue(toStringJob.toString().contains(toStringJob.getName()));
-        assertTrue(toStringJob.toString().contains("Employer:"));
+        //assertTrue(toStringJob.toString().contains("Employer:"));
         assertTrue(toStringJob.toString().contains(toStringJob.getEmployer().getValue()));
-        assertTrue(toStringJob.toString().contains("Location:"));
+        //assertTrue(toStringJob.toString().contains("Location:"));
         assertTrue(toStringJob.toString().contains(toStringJob.getLocation().getValue()));
-        assertTrue(toStringJob.toString().contains("Position Type:"));
+       //assertTrue(toStringJob.toString().contains("Position Type:"));
         assertTrue(toStringJob.toString().contains(toStringJob.getPositionType().getValue()));
-        assertTrue(toStringJob.toString().contains("Core Competency:"));
+        //assertTrue(toStringJob.toString().contains("Core Competency:"));
         assertTrue(toStringJob.toString().contains(toStringJob.getCoreCompetency().getValue()));
     }
 
@@ -72,17 +84,16 @@ public class JobTest {
     public void testToStringHandlesEmptyField(){
         Job emptyJob = new Job();
         String resultingString = emptyJob.toString();
-        assertNull(emptyJob.getName());
-        assertNull(emptyJob.getEmployer());
-        assertNull(emptyJob.getLocation());
-        assertNull(emptyJob.getPositionType());
-        assertNull(emptyJob.getCoreCompetency());
+        assertEquals(emptyJob.getName(), null);
+        assertEquals(emptyJob.getEmployer(), null);
+        assertEquals(emptyJob.getLocation(), null);
+        assertEquals(emptyJob.getPositionType(), null);
+        assertEquals(emptyJob.getCoreCompetency(), null);
 
         assertTrue(resultingString.contains("Name: Data not available"));
         assertTrue(resultingString.contains("Employer: Data not available"));
         assertTrue(resultingString.contains("Location: Data not available"));
         assertTrue(resultingString.contains("Position Type: Data not available"));
         assertTrue(resultingString.contains("Core Competency: Data not available"));
-        assertEquals("HI", "HI");
     }
 }
